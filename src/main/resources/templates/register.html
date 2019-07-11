@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="res/static/css/main.css">
+    <link rel="stylesheet" type="text/css" href="res/layui/css/layui.css">
+    <script type="text/javascript" src="res/layui/layui.js"></script>
+    <script type="text/javascript" src="res/static/js/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+</head>
+<body>
+
+<div class="site-nav-bg">
+    <div class="site-nav w1200">
+        <p class="sn-back-home">
+            <i class="layui-icon layui-icon-home"></i>
+            <a href="#">首页</a>
+        </p>
+        <div class="sn-quick-menu">
+            <div class="login"><a href="login.html">登录</a></div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="header">
+    <div class="headerLayout w1200">
+        <div class="headerCon">
+            <h1 class="mallLogo">
+                <a href="#" title="母婴商城">
+                    <img src="../res/static/img/logo.png">
+                </a>
+            </h1>
+            <div class="mallSearch">
+                <form action="" class="layui-form" novalidate>
+                    <input type="text" name="title" required  lay-verify="required" autocomplete="off" class="layui-input" placeholder="请输入需要的商品">
+                    <button class="layui-btn" lay-submit lay-filter="formDemo">
+                        <i class="layui-icon layui-icon-search"></i>
+                    </button>
+                    <input type="hidden" name="" value="">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="content content-nav-base  login-content">
+    <div class="main-nav">
+        <div class="inner-cont0">
+            <div class="inner-cont1 w1200">
+                <div class="inner-cont2">
+                    <a href="commodity.html" class="active">所有商品</a>
+                    <a href="buytoday.html">今日团购</a>
+                    <a href="information.html">母婴资讯</a>
+                    <a href="about.html">关于我们</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="login-bg">
+        <div class="login-cont w1200">
+            <div class="form-box">
+                <form class="layui-form" action="/register" method="post">
+                    <legend>手机号登录</legend>
+                    <div class="layui-form-item">
+                        <div class="layui-inline iphone">
+                            <div class="layui-input-inline">
+                                <i class="layui-icon layui-icon-website iphone-icon"></i>
+                                <input type="email" name="email" id="email" lay-verify="required|email" placeholder="请输入您的邮箱" autocomplete="off" class="layui-input" onblur="existsByUserMail()">
+                            </div>
+                        </div>
+                        <div class="layui-inline iphone">
+                            <div class="layui-input-inline">
+                                <i class="layui-icon layui-icon-username iphone-icon"></i>
+                                <input  name="userName" id="userName" lay-verify="required" placeholder="请输入您的用户名" autocomplete="off" class="layui-input" onblur="existsByUserName()">
+                            </div>
+                        </div>
+                        <div class="layui-inline iphone">
+                            <div class="layui-input-inline">
+                                <i class="layui-icon layui-icon-password iphone-icon"></i>
+                                <input  type="password" name="password1" id="password1" lay-verify="required" placeholder="请输入您的密码" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline iphone">
+                            <div class="layui-input-inline">
+                                <i class="layui-icon layui-icon-password iphone-icon"></i>
+                                <input  type="password" name="password" id="password" lay-verify="required" onmouseout="verifyPassword()" placeholder="请再次输入您的密码" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item login-btn">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit="register" lay-filter="demo1" id="test" onmouseover="judge()">登录</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="ng-promise-box">
+        <div class="ng-promise w1200">
+            <p class="text">
+                <a class="icon1" href="javascript:;">7天无理由退换货</a>
+                <a class="icon2" href="javascript:;">满99元全场免邮</a>
+                <a class="icon3" style="margin-right: 0" href="javascript:;">100%品质保证</a>
+            </p>
+        </div>
+    </div>
+    <div class="mod_help w1200">
+        <p>
+            <a href="javascript:;">关于我们</a>
+            <span>|</span>
+            <a href="javascript:;">帮助中心</a>
+            <span>|</span>
+            <a href="javascript:;">售后服务</a>
+            <span>|</span>
+            <a href="javascript:;">母婴资讯</a>
+            <span>|</span>
+            <a href="javascript:;">关于货源</a>
+        </p>
+        <p class="coty">母婴商城版权所有 &copy; 2012-2020</p>
+    </div>
+</div>
+<script type="text/javascript">
+    layui.config({
+        base: 'res/static/js/util' //你存放新模块的目录，注意，不是layui的模块目录
+    }).use(['jquery','form'])
+</script>
+<script type="text/javascript">
+    var mail=true;
+    var userName=true;
+    function verifyPassword() {
+        if (document.getElementById("password1").value!=document.getElementById("password").value) {
+            layer.msg('两次输入的密码不一致', {icon: 5});
+            document.getElementById("test").disabled = true;
+        }else
+            document.getElementById("test").disabled = false;
+
+    }
+    function existsByUserName() {
+        $.get(
+            "existsByUserName",
+            {userName:document.getElementById("userName").value},
+            function(response) {
+                if (response=="true"){
+                    layer.msg("该用户名已被注册！",{icon: 5});
+                    userName=false;
+                }else
+                    userName=true;
+
+            },'text'
+        )
+    };
+    function existsByUserMail() {
+        $.get(
+            "existsByUserMail",
+            {userMail:document.getElementById("email").value},
+            function(response) {
+                if (response=="true"){
+                    layer.msg("该邮箱已注册过！",{icon: 5});
+                    mail=false;
+                }else
+                    mail=true;
+
+            },'text'
+        )
+    };
+    function judge() {
+        if(userName==false){
+            layer.msg("该用户名已被注册！",{icon: 5});
+            document.getElementById("test").disabled = true;
+        }
+
+        if(mail==false){
+            layer.msg("该邮箱已注册过！",{icon: 5});
+            document.getElementById("test").disabled = true;
+        }
+        if(userName&&mail)
+            document.getElementById("test").disabled = false;
+    }
+</script>
+
+</body>
+</html>
